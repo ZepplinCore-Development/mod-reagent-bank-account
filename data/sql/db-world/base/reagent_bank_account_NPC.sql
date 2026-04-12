@@ -16,7 +16,6 @@ INSERT INTO `creature_template` SET
     `exp` = 0,
     `faction` = 35,
     `npcflag` = 1,
-    `scale` = 1,
     `rank` = 0,
     `dmgschool` = 0,
     `baseattacktime` = 2000,
@@ -34,9 +33,13 @@ INSERT INTO `creature_template` SET
     `RacialLeader` = 0,
     `movementId` = 0,
     `RegenHealth` = 1,
-    `mechanic_immune_mask` = 0,
+    `CreatureImmunitiesId` = 0,
     `flags_extra` = 2,
     `ScriptName` = 'npc_reagent_banker_account';
+
+DELETE FROM `creature_template_model` WHERE (`CreatureID` = @Entry);
+INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
+(@Entry, 0, 0, 1, 1, 0);
 
 -- Reagent Banker - Spawns
 DELETE FROM `creature` WHERE (`id1` = @Entry);
